@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Disable system preference
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                900: '#1e3a8a',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        background-color: #f8fafc;
+        color: #1e293b;
+      }
+      /* Markdown Styles for Chatbot */
+      .markdown-content p { margin-bottom: 0.5rem; }
+      .markdown-content p:last-child { margin-bottom: 0; }
+      .markdown-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+      .markdown-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+      .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 { font-weight: bold; margin-top: 0.5rem; margin-bottom: 0.25rem; }
+      .markdown-content code { background-color: rgba(0,0,0,0.05); padding: 0.1rem 0.3rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.9em; }
+      .markdown-content pre { background-color: #1e293b; color: #f1f5f9; padding: 0.5rem; border-radius: 0.5rem; overflow-x: auto; margin-bottom: 0.5rem; }
+      .markdown-content pre code { background-color: transparent; color: inherit; padding: 0; }
+      .markdown-content blockquote { border-left: 3px solid #cbd5e1; padding-left: 0.75rem; color: #64748b; font-style: italic; margin-bottom: 0.5rem; }
+      .markdown-content table { border-collapse: collapse; width: 100%; margin-bottom: 0.5rem; font-size: 0.9em; }
+      .markdown-content th, .markdown-content td { border: 1px solid #e2e8f0; padding: 0.25rem 0.5rem; text-align: left; }
+      .markdown-content th { background-color: #f8fafc; font-weight: bold; }
+      
+      /* KaTeX adjustments */
+      .katex-display { margin: 0.5em 0; overflow-x: auto; overflow-y: hidden; }
+      
+      /* PDF Export Styles */
+      @media print {
+        @page {
+          size: landscape;
+          margin: 0.5cm;
+        }
+        body {
+          background-color: white;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .no-print, header, footer, #ai-tutor-widget {
+          display: none !important;
+        }
+        .print-only {
+          display: block !important;
+        }
+        .schedule-grid {
+          width: 100% !important;
+          border: 1px solid #e2e8f0;
+        }
+        .schedule-cell {
+          border: 1px solid #e2e8f0 !important;
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2",
+    "react-markdown": "https://esm.sh/react-markdown@9?bundle&external=react,react-dom",
+    "remark-math": "https://esm.sh/remark-math@6?bundle",
+    "rehype-katex": "https://esm.sh/rehype-katex@7?bundle",
+    "remark-gfm": "https://esm.sh/remark-gfm@4?bundle"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
