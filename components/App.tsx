@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Auth from './components/Auth';
-import AdminDashboard from './components/AdminDashboard';
+import { AdminDashboard } from './components/AdminDashboard';
 import TeacherDashboard from './components/TeacherDashboard';
 import ClassModal from './components/ClassModal';
 import ToDoPage from './components/ToDoPage';
@@ -635,11 +635,6 @@ const App: React.FC = () => {
                     {flags.enableCommunity && (
                         <button onClick={() => setState(p => ({...p, view: 'community'}))} className={`px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 ${state.view === 'community' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500'}`}><MessageSquare size={18} /> {t.nav.community}</button>
                     )}
-                    {flags.enableAITutor && (
-                        <button onClick={() => setStudentAIHubOpen(true)} className={`px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 text-indigo-600 hover:bg-indigo-50 transition-colors`}>
-                            <Sparkles size={18} /> {t.ai.hub}
-                        </button>
-                    )}
                 </nav>
             </div>
 
@@ -750,6 +745,18 @@ const App: React.FC = () => {
                     onCopyDay={copyDay}
                 />
             </div>
+        )}
+        
+        {/* Student AI Hub FAB - Added at the bottom left */}
+        {showAITutor && (
+            <button
+                onClick={() => setStudentAIHubOpen(true)}
+                className="fixed bottom-6 left-6 bg-indigo-600 text-white p-4 rounded-full shadow-xl hover:bg-indigo-700 transition-transform hover:scale-105 z-50 flex items-center gap-2 animate-in fade-in zoom-in"
+                title={t.ai.hub}
+            >
+                <Sparkles size={24} />
+                <span className="font-bold hidden md:inline">{t.ai.hub}</span>
+            </button>
         )}
       </main>
 

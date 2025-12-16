@@ -111,6 +111,42 @@ export const db = {
         }
     },
 
+    // NEW: Secure Access Methods (Bypass LocalStorage)
+    getSecureItem: async <T>(key: string): Promise<T | null> => {
+        if (!supabase) return null; // Secure items ONLY live in cloud
+        try {
+            const { data, error } = await supabase
+                .from('key_value_store')
+                .select('value')
+                .eq('key', key)
+                .single();
+            
+            if (!error && data) {
+                return data.value as T;
+            }
+            return null;
+        } catch (e) {
+            console.error("Secure fetch failed", e);
+            return null;
+        }
+    },
+
+    setSecureItem: async (key: string, value: any): Promise<void> => {
+        if (!supabase) {
+            console.warn("Cannot save secure item: Supabase not connected.");
+            return;
+        }
+        try {
+            const { error } = await supabase
+                .from('key_value_store')
+                .upsert({ key, value });
+            
+            if (error) console.error("Secure save failed", error);
+        } catch (e) {
+            console.error("Secure save exception", e);
+        }
+    },
+
     removeItem: async (key: string): Promise<void> => {
         localStorage.removeItem(key);
         if (supabase) {

@@ -29,7 +29,6 @@ export interface User {
   isBanned?: boolean; // System wide ban (login)
   isCommunicationBanned?: boolean; // Ban from community/student board
   isApproved?: boolean; // For teachers requiring admin approval
-  hasSuperAdminPrivilege?: boolean; // Can access Super Admin Mode (Super Admin 14548 can grant this)
   warnings?: Warning[];
   broadcasts?: Broadcast[];
 }

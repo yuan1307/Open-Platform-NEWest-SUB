@@ -681,35 +681,6 @@ export const ConfirmMultiBanModal: React.FC<ConfirmMultiBanModalProps> = ({ isOp
     );
 };
 
-interface ManageSuperAdminModalProps { isOpen: boolean; onClose: () => void; count: number; onConfirm: () => void; actionType: 'grant' | 'revoke'; }
-
-export const ManageSuperAdminModal: React.FC<ManageSuperAdminModalProps> = ({ isOpen, onClose, count, onConfirm, actionType }) => {
-    const { t } = useLanguage();
-    if (!isOpen) return null;
-    const isGrant = actionType === 'grant';
-    return (
-        <div className="fixed inset-0 bg-black/50 z-[70] flex items-center justify-center p-4 backdrop-blur-sm">
-            <div className="bg-white rounded-xl shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95">
-                <div className={`text-white p-4 flex justify-between items-center ${isGrant ? 'bg-purple-600' : 'bg-slate-600'}`}>
-                    <h3 className="font-bold flex items-center gap-2"><ShieldAlert size={18}/> {isGrant ? 'Grant Privilege' : 'Revoke Privilege'}</h3>
-                    <button onClick={onClose}><X size={20}/></button>
-                </div>
-                <div className="p-6 text-center">
-                    <p className="text-gray-700 mb-6">
-                        {isGrant 
-                            ? `Grant Super Admin privileges to ${count} users? This allows them to toggle Super Admin Mode.` 
-                            : `Revoke Super Admin privileges from ${count} users?`}
-                    </p>
-                    <div className="flex gap-3">
-                        <button onClick={onClose} className="flex-1 border py-2 rounded text-gray-600 hover:bg-gray-50">{t.common.cancel}</button>
-                        <button onClick={() => { onConfirm(); onClose(); }} className={`flex-1 text-white py-2 rounded font-bold ${isGrant ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-600 hover:bg-slate-700'}`}>{t.common.confirm}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
 interface ConfirmPostModalProps { isOpen: boolean; onClose: () => void; onConfirm: () => void; }
 
 export const ConfirmPostModal: React.FC<ConfirmPostModalProps> = ({ isOpen, onClose, onConfirm }) => {

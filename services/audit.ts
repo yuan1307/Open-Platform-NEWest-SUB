@@ -24,23 +24,25 @@ export const audit = {
         details
       };
       
-      const logs = await db.getItem<SystemRecord[]>('basis_system_records') || [];
+      // Patch 2: Use getSecureItem/setSecureItem to bypass LocalStorage
+      const logs = await db.getSecureItem<SystemRecord[]>('basis_system_records') || [];
       const updatedLogs = [record, ...logs];
-      await db.setItem('basis_system_records', updatedLogs);
+      await db.setSecureItem('basis_system_records', updatedLogs);
     } catch (e) {
       console.error("Failed to log action:", e);
     }
   },
 
   getRecords: async (): Promise<SystemRecord[]> => {
-    return await db.getItem<SystemRecord[]>('basis_system_records') || [];
+    // Patch 2: Read strictly from cloud to prevent local spoofing/reading
+    return await db.getSecureItem<SystemRecord[]>('basis_system_records') || [];
   },
 
   saveRecords: async (records: SystemRecord[]) => {
-    await db.setItem('basis_system_records', records);
+    await db.setSecureItem('basis_system_records', records);
   },
 
   clearAllRecords: async () => {
-    await db.setItem('basis_system_records', []);
+    await db.setSecureItem('basis_system_records', []);
   }
 };

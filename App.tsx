@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Auth from './components/Auth';
-import AdminDashboard from './components/AdminDashboard';
+import { AdminDashboard } from './components/AdminDashboard';
 import TeacherDashboard from './components/TeacherDashboard';
 import ClassModal from './components/ClassModal';
 import ToDoPage from './components/ToDoPage';
